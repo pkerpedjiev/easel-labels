@@ -1,5 +1,5 @@
 import d3 from 'd3';
-import PIXI from 'pixi.js';
+import createjs from 'createjs';
 import boxIntersect from 'box-intersect';
 
 export function pixiIntersect(divName) {
@@ -9,10 +9,13 @@ let width = 400, height = 400;
 let canvas = d3.select(divName).append('canvas')
 .attr('width', width)
 .attr('height', height)
+.attr('id', 'text-canvas')
 .style('position', 'absolute')
 .style('top', "0px")
 .style('left', "0px")
 
+let stage = new createjs.Stage('text-canvas');
+console.log('stage:', stage);
 
 let svg = d3.select('#circle').append('svg')
 .attr('width', width)
@@ -33,7 +36,6 @@ let renderer = PIXI.autoDetectRenderer(width, height,
 
 
 // create the root of the scene graph
-var stage = new PIXI.Container();
 var pMain = new PIXI.Graphics();
 stage.addChild(pMain);
 
